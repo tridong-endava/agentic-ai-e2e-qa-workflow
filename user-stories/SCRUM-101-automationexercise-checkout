@@ -1,0 +1,145 @@
+# User Story: SRUM-101 - AutomationExercise Checkout Process
+
+## Story Title
+As a customer, I want to complete my purchase through the AutomationExercise checkout process so that I can order products online.
+
+## Story Description
+Implement and validate a complete checkout flow on AutomationExercise that allows customers to register or log in, add products to cart, review cart details, proceed to checkout, verify address and order details, enter payment information, place an order, download the invoice, and confirm order completion.
+
+## Application URL
+https://automationexercise.com
+
+## Test Credentials
+- Email: dynamically generated during registration
+- Password: `Password123`
+
+## Test Data
+- Name: `Test User`
+- First Name: `Test`
+- Last Name: `User`
+- Company: `Endava`
+- Address: `123 Test Street`
+- Country: `Canada`
+- State: `Ontario`
+- City: `Toronto`
+- Zipcode: `12345`
+- Mobile Number: `1234567890`
+- Card Name: `Test User`
+- Card Number: `4111111111111111`
+- CVC: `123`
+- Expiration Month: `12`
+- Expiration Year: `2030`
+
+## Acceptance Criteria
+
+### AC1: User Registration
+- GIVEN I am a new customer on the AutomationExercise home page
+- WHEN I navigate to the Signup/Login page
+- THEN I should see the New User Signup form
+- WHEN I enter a valid name and unique email
+- AND I complete the account information form
+- THEN my account should be created successfully
+- AND I should see the account created confirmation
+- AND I should be logged in as the registered user
+
+### AC2: Product Selection
+- GIVEN I am a logged-in user
+- WHEN I navigate to the Products page
+- THEN I should see a list of available products
+- WHEN I add one or more products to the cart
+- THEN each selected product should be added successfully
+- AND I should have the option to continue shopping or view the cart
+
+### AC3: Cart Review
+- GIVEN I have products in my cart
+- WHEN I navigate to the cart page
+- THEN I should see all added products with their details
+- AND I should see product name, price, quantity, and total
+- AND I should have an option to proceed to checkout
+
+### AC4: Proceed to Checkout
+- GIVEN I am on the cart page with products
+- WHEN I click the Proceed To Checkout button
+- THEN I should be redirected to the checkout page
+- AND I should see delivery address details
+- AND I should see billing address details
+- AND I should see the order summary
+
+### AC5: Address and Order Review
+- GIVEN I am on the checkout page
+- THEN the delivery address should match the registered user information
+- AND the billing address should match the registered user information
+- AND all cart products should appear in the order review section
+- AND the total amount should match the cart total
+
+### AC6: Place Order
+- GIVEN I am on the checkout page
+- WHEN I enter an order comment
+- AND I click the Place Order button
+- THEN I should be redirected to the payment page
+
+### AC7: Payment Entry
+- GIVEN I am on the payment page
+- WHEN I enter valid payment details
+- AND I click Pay and Confirm Order
+- THEN the order should be placed successfully
+- AND I should see an order confirmation message
+
+### AC8: Download Invoice
+- GIVEN the order has been placed successfully
+- WHEN I click Download Invoice
+- THEN an invoice file should be downloaded
+
+### AC9: Continue After Order
+- GIVEN the order confirmation page is displayed
+- WHEN I click Continue
+- THEN I should be redirected back to the home page
+
+### AC10: Delete Account
+- GIVEN I have completed the checkout flow
+- WHEN I delete my account
+- THEN I should see Account Deleted confirmation
+- AND the user account should no longer be active
+
+### AC11: Error Handling
+- GIVEN I am on the registration or payment form
+- WHEN I submit missing or invalid required data
+- THEN I should see appropriate validation or error feedback
+- AND I should not be able to continue until required fields are valid
+
+## Business Rules
+1. A unique email address is required for user registration.
+2. User must be logged in before completing checkout.
+3. Cart must contain at least one product before checkout.
+4. Checkout should display correct delivery and billing address information.
+5. Order review should display the same products added to cart.
+6. Payment details are required before confirming the order.
+7. Successful order placement should allow invoice download.
+8. Test account should be deleted at the end of the flow to keep the environment clean.
+9. Automation should generate dynamic user data to avoid duplicate email issues.
+10. The checkout flow should be validated across supported browsers.
+
+## Technical Notes
+- Use Playwright for test automation.
+- Use dynamic email generation for registration.
+- Capture screenshots and videos on test failure.
+- Validate navigation flow from registration to order confirmation.
+- Validate important UI messages:
+  - `Account Created!`
+  - `Logged in as`
+  - `Your order has been placed successfully!`
+  - `Account Deleted!`
+- Use Page Object Model for maintainability.
+- Test across Chromium, Firefox, and WebKit where possible.
+- Include retry or healing logic only after baseline tests are stable.
+
+## Definition of Done
+- [ ] User story reviewed and requirements extracted
+- [ ] Acceptance criteria converted into test scenarios
+- [ ] Manual exploratory testing completed
+- [ ] Automated Playwright test scripts created
+- [ ] Tests executed successfully
+- [ ] Failed tests analyzed and fixed
+- [ ] Test report generated
+- [ ] Test artifacts saved
+- [ ] Code committed to repository
